@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog Section with Pagination</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+
+    <nav role="navigation" aria-label="Main navigation">
+      <!-- BoxedLogo -->
+      <div class="logo" tabindex="0">Nexus Web Creations</div>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-menu"
+        id="hamburger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="menu" id="primary-menu" aria-hidden="true">
+        <li><a href="#" tabindex="-1">Home</a></li>
+        <li><a href="#" tabindex="-1">About</a></li>
+        <li><a href="#" tabindex="-1">Services</a></li>
+        <li><a href="#" tabindex="-1">Blogs</a></li>
+        <li><a href="#" tabindex="-1">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div id="overlay" tabindex="-1"></div>
+
+
+    <section class="blog-section">
+      <div class="container">
+        <h2 class="section-title">From Our Blog</h2>
+        <p class="section-description">Insights, tips, and updates to help you stay informed.</p>
+
+        <div id="blog-grid" class="blog-grid">
+          <!-- Blog cards inserted here by JS -->
+        </div>
+
+        <div class="pagination" id="pagination">
+          <!-- Pagination buttons inserted here by JS -->
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- <script src="script.js"></script> -->
+    <script>
+      // Blog post data array
+      const posts = [
+        {
+          title: "Latest Tech Trends in 2025",
+          desc: "Discover what's shaping the future of tech — from AI to sustainability.",
+          img: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "Boosting Productivity as a Team",
+          desc: "Simple strategies to increase collaboration and efficiency in your workspace.",
+          img: "https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "5 Web Dev Tools You Should Know",
+          desc: "Powerful tools and resources to speed up your development workflow.",
+          img: "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "How to Build Scalable Apps",
+          desc: "Best practices for building apps that grow with your users.",
+          img: "https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "Remote Work: Tips & Tools",
+          desc: "Maximize productivity with remote-friendly solutions.",
+          img: "https://images.pexels.com/photos/897817/pexels-photo-897817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "Designing for Accessibility",
+          desc: "Create inclusive designs everyone can enjoy.",
+          img: "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "Cybersecurity Basics",
+          desc: "Protect your digital assets with these tips.",
+          img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "Understanding Cloud Computing",
+          desc: "Demystifying cloud services for businesses.",
+          img: "https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        },
+        {
+          title: "The Future of AI",
+          desc: "Exploring AI trends and ethical considerations.",
+          img: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+          link: "#"
+        }
+      ];
+
+      const postsPerPage = 3;
+      let currentPage = 1;
+
+      const blogGrid = document.getElementById('blog-grid');
+      const pagination = document.getElementById('pagination');
+
+      function renderPosts() {
+        blogGrid.innerHTML = '';
+
+        const start = (currentPage - 1) * postsPerPage;
+        const end = start + postsPerPage;
+        const pagePosts = posts.slice(start, end);
+
+        pagePosts.forEach(post => {
+          const postEl = document.createElement('article');
+          postEl.className = 'blog-card';
+          postEl.innerHTML = `
+            <img src="${post.img}" alt="${post.title}" />
+            <div class="card-content">
+              <h3>${post.title}</h3>
+              <p>${post.desc}</p>
+              <a href="${post.link}">Read More →</a>
+            </div>
+          `;
+          blogGrid.appendChild(postEl);
+        });
+      }
+
+      function renderPagination() {
+        pagination.innerHTML = '';
+
+        const totalPages = Math.ceil(posts.length / postsPerPage);
+
+        // Prev button
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = 'Previous';
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => {
+          if (currentPage > 1) {
+            currentPage--;
+            update();
+          }
+        };
+        pagination.appendChild(prevBtn);
+
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+          const pageBtn = document.createElement('button');
+          pageBtn.textContent = i;
+          pageBtn.disabled = i === currentPage;
+          pageBtn.onclick = () => {
+            currentPage = i;
+            update();
+          };
+          pagination.appendChild(pageBtn);
+        }
+
+        // Next button
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Next';
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            update();
+          }
+        };
+        pagination.appendChild(nextBtn);
+      }
+
+      function update() {
+        renderPosts();
+        renderPagination();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Initial render
+      update();
+    </script>
+
+
+  </body>
+
+</html>
