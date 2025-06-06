@@ -1,7 +1,25 @@
 /* ============================================= */
-/* BASE & RESET STYLES                        */
+/* CSS Variables                                 */
 /* ============================================= */
-* {
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #476aae;
+  --text-color: #040404;
+  --text-secondary: #7d7b7b;
+  --background-light: #f7fafc;
+  --background-dark: #1d1d1d;
+  --white: #ffffff;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.2);
+  --transition-fast: 0.3s ease;
+}
+
+/* ============================================= */
+/* Base & Reset Styles                          */
+/* ============================================= */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,40 +27,50 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  font-family: "Inter", sans-serif;
-  /* background-color: #f7f7f7; */
-  background-color: #f7fafc;
+  font-family: "Inter", Arial, sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
 /* ============================================= */
-/* LAYOUT & CONTAINERS                        */
+/* Layout & Containers                          */
 /* ============================================= */
 .container,
 .wid-container {
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  margin: 0 auto;
 }
+
 .container {
-  max-width: 1280px;
+  max-width: 1200px;
 }
+
 .wid-container {
-  max-width: 1680px;
+  max-width: 1500px;
 }
 
 /* ============================================= */
-/* TYPOGRAPHY                                 */
+/* Typography                                   */
 /* ============================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
 h2 {
   margin-bottom: 3rem;
-  font-size: 35px;
-  color: #040404;
+  font-size: 2.1875rem; /* 35px */
+  color: var(--text-color);
 }
 
 h3 {
-  color: #476aae;
-  padding: 10px 0px;
+  color: var(--secondary-color);
+  padding: 0.625rem 0;
   font-family: "Poppins", sans-serif;
 }
 
@@ -53,18 +81,18 @@ h4 {
 
 p {
   margin-bottom: 2rem;
-  color: #7d7b7b;
+  color: var(--text-secondary);
 }
 
 /* ============================================= */
-/* NAVIGATION                                 */
+/* Navigation                                   */
 /* ============================================= */
 nav {
   max-width: 1100px;
   margin: 1rem auto;
-  background: white;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow-light);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -72,10 +100,9 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .logo {
@@ -85,7 +112,7 @@ nav {
   color: #222;
 }
 
-ul.menu {
+.menu {
   list-style: none;
   display: flex;
   gap: 2rem;
@@ -93,7 +120,7 @@ ul.menu {
   padding: 0;
 }
 
-ul.menu li a {
+.menu li a {
   color: #333;
   text-decoration: none;
   font-weight: 600;
@@ -103,17 +130,17 @@ ul.menu li a {
   outline-offset: 2px;
 }
 
-ul.menu li a:hover,
-ul.menu li a:focus-visible {
-  background-color: #0077ff;
-  color: white;
+.menu li a:hover,
+.menu li a:focus-visible {
+  background-color: var(--primary-color);
+  color: var(--white);
   outline: none;
 }
 
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.3125rem;
   cursor: pointer;
   background: none;
   border: none;
@@ -122,10 +149,10 @@ ul.menu li a:focus-visible {
 }
 
 .hamburger span {
-  width: 25px;
-  height: 3px;
+  width: 1.5625rem;
+  height: 0.1875rem;
   background: #333;
-  border-radius: 2px;
+  border-radius: 0.125rem;
   display: block;
 }
 
@@ -138,7 +165,7 @@ ul.menu li a:focus-visible {
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-fast);
   z-index: 8;
 }
 
@@ -148,75 +175,69 @@ ul.menu li a:focus-visible {
 }
 
 .logo img {
-  max-height: 60px;
+  max-height: 3.75rem;
   width: auto;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   display: inline-block;
   vertical-align: middle;
 }
 
 /* ============================================= */
-/* BUTTONS                             */
+/* Buttons                                      */
 /* ============================================= */
 .btn {
   display: inline-block;
-  /* background: #007bff; */
-  background: linear-gradient(135deg, #007bff, #00c6ff); /* gradient effect */
-  color: white;
-  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--primary-color), #00c6ff);
+  color: var(--white);
+  padding: 0.875rem 1.75rem;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
-  font-size: 16px;
-  transition: background 0.3s ease, transform 0.3s ease;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
   box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
 }
 
 .btn:hover {
-  background: linear-gradient(
-    135deg,
-    #0056b3,
-    #0099cc
-  ); /* darker gradient on hover */
-  transform: translateY(-2px); /* subtle lift effect */
+  background: linear-gradient(135deg, #0056b3, #0099cc);
+  transform: translateY(-0.125rem);
 }
 
 /* ============================================= */
-/* HERO SECTION                               */
+/* Hero Section                                 */
 /* ============================================= */
 .hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
-  padding: 60px;
-  border-radius: 0px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  gap: 40px;
+  background: var(--white);
+  padding: 3.75rem;
+  box-shadow: 0 10px 30px var(--shadow-light);
+  gap: 2.5rem;
   flex-wrap: wrap;
 }
 
 .hero-left {
   flex: 1 1 50%;
-  min-width: 280px;
+  min-width: 17.5rem;
 }
 
 .hero-left h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
   color: #333;
 }
 
 .hero-left p {
-  font-size: 18px;
-  margin-bottom: 30px;
+  font-size: 1.125rem;
+  margin-bottom: 1.875rem;
   color: #666;
 }
 
 .hero-right {
   flex: 1 1 45%;
-  min-width: 280px;
+  min-width: 17.5rem;
   position: relative;
 }
 
@@ -227,9 +248,9 @@ ul.menu li a:focus-visible {
 
 .carousel-img {
   width: 100%;
-  height: 500px;
+  height: 31.25rem;
   display: none;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 .carousel-img.active {
@@ -237,10 +258,10 @@ ul.menu li a:focus-visible {
 }
 
 /* ============================================= */
-/* Our services  */
+/* Card Styles Section                          */
 /* ============================================= */
 .card-style-section {
-  max-width: 1500px;
+  max-width: 93.75rem;
   margin: 4rem auto;
   padding: 0 0.5rem;
   text-align: center;
@@ -254,34 +275,30 @@ ul.menu li a:focus-visible {
 
 .card-style-section .grid-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
   gap: 2rem;
 }
 
 .card-style-section .card {
   padding: 2.2rem 1.8rem;
-  border-radius: 15px;
+  border-radius: 0.9375rem;
   box-shadow: 0 10px 25px rgba(208, 200, 200, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* make it has hover effects */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default; /* default cursor */
+  transition: all var(--transition-fast);
 }
 
-/* make it has hover effects */
 .card-style-section .card:hover {
-  transform: scale(1.05); /* scale up 5% */
-  box-shadow: 0 15px 35px rgba(208, 200, 200, 1); /* stronger shadow */
-  cursor: pointer; /* pointer cursor on hover */
-  z-index: 10; /* bring card above neighbors */
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(208, 200, 200, 1);
+  cursor: pointer;
+  z-index: 10;
 }
 
 .card-style-section .icon-circle {
-  width: 72px;
-  height: 72px;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -314,12 +331,11 @@ ul.menu li a:focus-visible {
   text-align: center;
 }
 
-/* card links */
 .card-btn-link {
   color: #0d6efd;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.3s ease;
+  transition: color var(--transition-fast);
 }
 
 .card-btn-link:hover {
@@ -328,10 +344,10 @@ ul.menu li a:focus-visible {
 }
 
 /* ============================================= */
-/* SCROLLING SECTION                         */
+/* Scrolling Section                            */
 /* ============================================= */
 .scrolling-section {
-  padding: 60px 0;
+  padding: 3.75rem 0;
   background-color: #111;
   overflow: hidden;
 }
@@ -339,7 +355,7 @@ ul.menu li a:focus-visible {
 .image-row {
   display: flex;
   width: fit-content;
-  gap: 20px;
+  gap: 1.25rem;
   animation: scrollLeft 30s linear infinite;
 }
 
@@ -348,120 +364,103 @@ ul.menu li a:focus-visible {
 }
 
 .image-row img {
-  height: 250px;
-  width: 400px;
-  border-radius: 10px;
+  height: 15.625rem;
+  width: 25rem;
+  border-radius: 0.625rem;
   object-fit: cover;
 }
 
 .row-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-}
-
-.image-row-container {
-  display: flex;
-  gap: 20px;
+  gap: 2.5rem;
 }
 
 /* ============================================= */
-/* ABOUT SECTION                           */
+/* About Section                                */
 /* ============================================= */
-
 .about-section {
-  padding: 60px 20px;
+  padding: 3.75rem 1.25rem;
   background-color: #f9f9f9;
-  margin-top: 100px;
+  margin-top: 6.25rem;
 }
 
 .about-container {
-  /* border: 2px solid red; */
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: 0 auto;
 }
 
 .about-text {
-  /* border: 2px solid rgb(70, 224, 13); */
   text-align: left;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 }
 
 .about-text h2 {
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .about-text p {
-  /* border: 2px solid rgb(70, 224, 13); */
   font-size: 1.1em;
   line-height: 1.6;
-  /* max-width: 850px; */
-  text-align: left;
-  margin: 0 auto 15px auto;
+  margin: 0 auto 0.9375rem auto;
 }
 
-/* cards */
 .features-grid {
   display: grid;
-  gap: 30px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 1100px;
+  gap: 1.875rem;
+  grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+  max-width: 68.75rem;
   margin: 0 auto;
 }
 
 .feature-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 30px 20px;
+  background: var(--white);
+  border-radius: 0.75rem;
+  padding: 1.875rem 1.25rem;
   text-align: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-
-  /* make the enlarge effect when user hover on it  */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; /* Optional, indicates it's interactive */
+  transition: all var(--transition-fast);
+  cursor: pointer;
 }
 
 .feature-card h3 {
-  margin: 15px 0 10px;
+  margin: 0.9375rem 0 0.625rem;
   font-size: 1.25em;
 }
 
 .feature-card p {
   font-size: 0.95em;
-  /* color: #555; */
   color: #9f9c9c;
 }
 
 .feature-card:hover {
-  background-color: #476aae;
-  transform: scale(1.1); /* 5% bigger */
+  background-color: var(--secondary-color);
+  transform: scale(1.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  z-index: 10; /* To appear above neighboring cards */
+  z-index: 10;
 }
 
-/* Explicitly set color on text elements */
 .feature-card:hover h3,
 .feature-card:hover p {
-  color: #fff;
+  color: var(--white);
 }
 
-/* change icon circle background on hover */
 .feature-card:hover .icon-circle {
-  background-color: #5bb4ef; /* darker blue */
-  color: #fff; /* icon color white */
+  background-color: #5bb4ef;
+  color: var(--white);
 }
 
 .icon-circle {
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height: 3.75rem;
   margin: 0 auto;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5em;
-  color: white;
+  color: var(--white);
 }
 
 .bg-red {
@@ -476,7 +475,6 @@ ul.menu li a:focus-visible {
 .bg-purple {
   background-color: #9b59b6;
 }
-
 .bg-yellow {
   background-color: #94b423;
 }
@@ -490,25 +488,10 @@ ul.menu li a:focus-visible {
   background-color: #cf5a17;
 }
 
-/* .about-section-btn {
-  margin: 2rem;
-  background: #0073e6;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  display: inline-block;
-  margin-top: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-  text-decoration: none;
-} */
-
 /* ============================================= */
-/* PROMOTE FLEX SECTION                               */
+/* Promote Flex Section                         */
 /* ============================================= */
 .promote-flex-section {
-  margin-top: 100px;
-  margin-bottom: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -519,7 +502,7 @@ ul.menu li a:focus-visible {
 }
 
 .flex-text {
-  flex: 1 1 300px;
+  flex: 1 1 18.75rem;
   opacity: 0;
   animation: fadeIn 1s ease-out forwards;
   animation-delay: 0.3s;
@@ -531,7 +514,7 @@ ul.menu li a:focus-visible {
   opacity: 0;
   animation: fadeInDown 1s ease-out forwards;
   animation-delay: 0.5s;
-  color: #040404;
+  color: var(--text-color);
 }
 
 .flex-text p {
@@ -541,16 +524,16 @@ ul.menu li a:focus-visible {
   opacity: 0;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 0.7s;
-  color: #040404;
+  color: var(--text-color);
 }
 
 .flex-image {
   position: relative;
-  flex: 1 1 300px;
+  flex: 1 1 18.75rem;
   width: 100%;
-  max-width: 600px;
-  height: 260px;
-  border-radius: 8px;
+  max-width: 37.5rem;
+  height: 16.25rem;
+  border-radius: 0.5rem;
   overflow: visible;
 }
 
@@ -563,9 +546,9 @@ ul.menu li a:focus-visible {
   height: 100%;
   background: url("https://via.placeholder.com/600x400/1e1e1e/ffffff?text=Branding")
     no-repeat center/cover;
-  filter: blur(25px);
+  filter: blur(1.5625rem);
   transform: translate(-50%, -50%);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   opacity: 0.5;
   pointer-events: none;
   z-index: 1;
@@ -576,20 +559,19 @@ ul.menu li a:focus-visible {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   z-index: 2;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================= */
-/* DIVIDER SECTION                           */
+/* Divider Section                              */
 /* ============================================= */
 .devider-section {
   background: #f0f8ff;
   padding: 4rem 1rem;
   text-align: center;
-  margin-top: 120px;
-  margin-bottom: 120px;
+  margin: 7.5rem 0;
 }
 
 .devider-section h2 {
@@ -602,11 +584,11 @@ ul.menu li a:focus-visible {
 }
 
 /* ============================================= */
-/* TESTIMONIALS                              */
+/* Testimonials                                 */
 /* ============================================= */
 .testimonial-section {
-  max-width: 800px;
-  margin: 0 auto;
+  /* max-width: 50rem; */
+  margin: 80px auto;
   position: relative;
   overflow: hidden;
 }
@@ -627,11 +609,11 @@ ul.menu li a:focus-visible {
 }
 
 .testimonial-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgb(26 115 232 / 0.15);
+  background: var(--white);
+  border-radius: 0.9375rem;
+  box-shadow: 0 6px 15px rgba(26, 115, 232, 0.15);
   padding: 2rem;
-  flex: 0 0 300px;
+  flex: 0 0 18.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -640,12 +622,12 @@ ul.menu li a:focus-visible {
 }
 
 .testimonial-photo {
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1rem;
-  border: 3px solid #1a73e8;
+  border: 0.1875rem solid #1a73e8;
 }
 
 .testimonial-name {
@@ -678,22 +660,22 @@ ul.menu li a:focus-visible {
 
 .testimonial-nav button {
   pointer-events: all;
-  background: #007bff;
+  background: var(--primary-color);
   border: none;
-  color: white;
+  color: var(--white);
   font-size: 1.5rem;
   padding: 0.3rem 0.8rem;
   border-radius: 50%;
   cursor: pointer;
   position: absolute;
   transform: translateY(-50%);
-  box-shadow: 0 4px 8px rgb(26 115 232 / 0.4);
-  transition: background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(26, 115, 232, 0.4);
+  transition: background var(--transition-fast);
 }
 
 .testimonial-nav button:hover,
 .testimonial-nav button:focus {
-  background: #476aae;
+  background: var(--secondary-color);
   outline: none;
 }
 
@@ -706,30 +688,32 @@ ul.menu li a:focus-visible {
 }
 
 /* ============================================= */
-/* BLOG STYLES                               */
+/* Blog Styles                                  */
 /* ============================================= */
 .blog-section {
-  padding: 9rem 2rem;
-  background-color: #fff;
+  padding: 9rem 12rem;
+  background-color: var(--white);
 }
 
 .blog-container {
+  /* border: 2px solid rgb(212, 211, 211); */
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
-  max-width: 1000px;
-  margin: auto;
+  gap: 5rem;
+  /* max-width: 90rem; */
+  /* margin: 30px; */
+  justify-content: center;
   align-items: center;
 }
 
 .blog-text {
-  flex: 1 1 200px;
+  /* flex: 1 1 12.5rem; */
   display: flex;
   align-items: center;
 }
 
 .blog-text-inner {
-  text-align: left;
+  text-align: right;
 }
 
 .blog-section-title {
@@ -741,11 +725,12 @@ ul.menu li a:focus-visible {
   font-size: 1.1rem;
   color: #555;
   margin-bottom: 2rem;
-  line-height: 1.6;
+  /* line-height: 1.6; */
 }
 
 .blog-grid {
-  flex: 2 1 600px;
+  /* flex: 2 1 37.5rem; */
+  /* flex: 1 1 50.5rem; */
   display: flex;
   gap: 3rem;
   flex-wrap: wrap;
@@ -753,22 +738,22 @@ ul.menu li a:focus-visible {
 }
 
 .blog-card {
-  background-color: #fafafa;
+  /* background-color: #eaf2fa; */
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   overflow: hidden;
-  width: 300px;
+  width: 21rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
+  transition: transform var(--transition-fast);
 }
 
 .blog-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-0.3125rem);
 }
 
 .blog-card img {
   width: 100%;
-  height: 200px;
+  height: 12.5rem;
   display: block;
 }
 
@@ -790,34 +775,32 @@ ul.menu li a:focus-visible {
 }
 
 /* ============================================= */
-/* SPLIT CONTACT FORM                        */
+/* Split Contact Form                           */
 /* ============================================= */
-
 .split-contact {
   display: flex;
   min-height: 100vh;
   flex-wrap: wrap;
-  padding: 0rem;
+  padding: 0;
 }
 
 .image-side {
   flex: 1;
-  min-height: 400px;
+  min-height: 25rem;
   background: url("https://content-management-files.canva.com/cdn-cgi/image/f=auto,q=70/b939851d-31f1-490c-97bd-dd54242a317b/website-design_promo-showcase_022x.png")
     center/cover no-repeat;
 }
 
 .form-side {
   flex: 1;
-  background: #ffffff;
-  /* max-width: 1500px; */
+  background: var(--white);
   padding: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.08); /* fixed syntax */
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.08);
 }
 
 form select,
@@ -827,11 +810,11 @@ form textarea {
   padding: 1rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   font-size: 1rem;
-  background-color: white;
+  background-color: var(--white);
   color: #333;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 form textarea {
@@ -839,48 +822,48 @@ form textarea {
 }
 
 form select {
-  padding: 12px; /* you can keep this if you want a bit bigger padding for select */
+  padding: 0.75rem;
 }
 
 form input:focus,
 form select:focus,
 form textarea:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.1875rem rgba(0, 123, 255, 0.2);
 }
 
 /* ============================================= */
-/* FOOTER                                    */
+/* Footer                                       */
 /* ============================================= */
 .site-footer {
-  background-color: #1d1d1d;
+  background-color: var(--background-dark);
   color: #eee;
   padding: 6rem;
-  margin-top: 5px;
+  margin-top: 0.3125rem;
 }
 
 .footer-container {
   display: flex;
   flex-wrap: wrap;
   gap: 8rem;
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: auto;
   justify-content: space-between;
 }
 
 .footer-left,
 .footer-right {
-  flex: 1 1 300px;
+  flex: 1 1 18.75rem;
 }
 
 .footer-left h2,
 .footer-right h3 {
-  color: #fff;
+  color: var(--white);
 }
 
 .footer-right h3 {
-  font-size: 22px;
+  font-size: 1.375rem;
 }
 
 .footer-left p,
@@ -890,7 +873,7 @@ form textarea:focus {
 }
 
 .footer-right a {
-  color: #6cb9f0c1;
+  color: rgba(108, 185, 240, 0.76);
   text-decoration: none;
 }
 
@@ -903,7 +886,7 @@ form textarea:focus {
 .newsletter-form input {
   flex: 1;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   font-size: 1.2rem;
 }
 
@@ -921,7 +904,7 @@ form textarea:focus {
   margin-right: 0.75rem;
   font-size: 1.25rem;
   color: #aaa;
-  transition: color 0.3s;
+  transition: color var(--transition-fast);
 }
 
 .social-icons a:hover {
@@ -938,22 +921,21 @@ form textarea:focus {
 }
 
 /* ============================================= */
-/* STICKY BOTTOM BAR                         */
+/* Sticky Bottom Bar                            */
 /* ============================================= */
 .bottom-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: #fff;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--white);
+  box-shadow: 0 -2px 10px var(--shadow-light);
   display: flex;
-  /* justify-content: space-between; */
-  justify-content: flex-end; /* Aligns all children to the right */
+  justify-content: flex-end;
   align-items: center;
   padding: 1rem 15rem;
   z-index: 1000;
-  gap: 1rem; /* Optional: space between text and button */
+  gap: 1rem;
 }
 
 .bottom-bar .info {
@@ -961,7 +943,6 @@ form textarea:focus {
   color: #666;
 }
 
-/* make the button glowing by default */
 @keyframes pulseGlow {
   0% {
     box-shadow: 0 0 5px rgba(4, 4, 5, 0.6);
@@ -980,7 +961,7 @@ form textarea:focus {
 }
 
 /* ============================================= */
-/* 18. ANIMATIONS                                */
+/* Animations                                   */
 /* ============================================= */
 @keyframes fadeIn {
   to {
@@ -991,7 +972,7 @@ form textarea:focus {
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-1.25rem);
   }
   to {
     opacity: 1;
@@ -1002,7 +983,7 @@ form textarea:focus {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem);
   }
   to {
     opacity: 1;
@@ -1029,25 +1010,26 @@ form textarea:focus {
 }
 
 /* ============================================= */
-/* 19. MEDIA QUERIES                             */
+/* Media Queries                                */
 /* ============================================= */
-@media (max-width: 700px) {
-  ul.menu {
+@media (max-width: 43.75rem) {
+  /* 700px */
+  .menu {
     display: none;
     flex-direction: column;
     position: fixed;
-    top: 80px;
+    top: 5rem;
     right: 2rem;
-    width: 200px;
-    background: white;
+    width: 12.5rem;
+    background: var(--white);
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px var(--shadow-medium);
     gap: 1.5rem;
     z-index: 11;
   }
 
-  ul.menu.open {
+  .menu.open {
     display: flex;
   }
 
@@ -1057,15 +1039,16 @@ form textarea:focus {
 
   .two-column-section {
     flex-direction: column;
-    gap: 30px;
+    gap: 1.875rem;
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 62rem) {
+  /* 992px */
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 40px 20px;
+    padding: 2.5rem 1.25rem;
   }
 
   .hero-left,
@@ -1074,20 +1057,21 @@ form textarea:focus {
   }
 
   .hero-left h1 {
-    font-size: 36px;
+    font-size: 2.25rem;
   }
 
   .hero-left p {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .btn {
-    font-size: 15px;
-    padding: 12px 24px;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
+  /* 768px */
   .flex-section {
     flex-direction: column;
     text-align: center;
@@ -1102,11 +1086,11 @@ form textarea:focus {
   }
 
   .image-side {
-    border-radius: 12px 12px 0 0;
+    border-radius: 0.75rem 0.75rem 0 0;
   }
 
   .form-side {
-    border-radius: 0 0 12px 12px;
+    border-radius: 0 0 0.75rem 0.75rem;
   }
 
   .newsletter-form {
@@ -1141,13 +1125,15 @@ form textarea:focus {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 40.625rem) {
+  /* 650px */
   .testimonial-nav {
     display: none;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
+  /* 600px */
   .bottom-bar {
     flex-direction: column;
     gap: 0.6rem;
@@ -1159,30 +1145,32 @@ form textarea:focus {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 36rem) {
+  /* 576px */
   body {
-    padding: 20px;
+    padding: 1.25rem;
   }
 
   .hero {
-    padding: 30px 15px;
+    padding: 1.875rem 0.9375rem;
   }
 
   .hero-left h1 {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 
   .hero-left p {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .btn {
-    font-size: 14px;
-    padding: 10px 20px;
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
+  /* 480px */
   .card-style-section .title {
     font-size: 2rem;
   }
