@@ -708,6 +708,12 @@ nav {
   margin-bottom: 3rem;
 }
 
+.blog-text-inner {
+  width: 1000px;
+  align-items: right;
+  text-align: right;
+}
+
 .blog-section-title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
